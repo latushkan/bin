@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# space2underscore
+#
+# this script will cause spaces to turn into underscrores.
+# the script will process all files in the working directory.
+
+for f in *
+do 
+  new="${f// /_}"
+  if [ "$new" != "$f" ]
+  then
+    if [ -e "$new" ]
+    then
+      echo not renaming \""$f"\" because \""$new"\" already exists
+    else
+      echo moving "$f" to "$new"
+    mv "$f" "$new"
+  fi
+fi
+done
+
+
+# Reference: 
+# based off article written by Karim Buzdar on Vitux.com titled
+# "How to Replace Spaces in Filenames with Underscores on the Linux Shell"
